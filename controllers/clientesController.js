@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-const Cliente = require("../models/Cliente");
+const Cliente = require("../modulos/Cliente");
 
-const rutaArchivo = path.join(__dirname, "../data/clientes.json");
+const rutaArchivo = path.join(__dirname, "../almacenamiento/clientes.json");
 
 //LEER ARCHIVO DE CLIENTES
 const leerClientes = () => {
