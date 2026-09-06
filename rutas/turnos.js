@@ -14,4 +14,8 @@ router.get('/:id', turnosController.consultarTurnoPorId);
 // Cancelar/Eliminar un turno por ID
 router.delete('/:id', turnosController.cancelarTurnoPorId);
 
+// Modificar o actualizar un turno por ID
+router.put('/:id', turnosController.actualizarTurno);
+
+
 module.exports = router;

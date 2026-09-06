@@ -22,19 +22,21 @@ const listarTurnos = (req, res) => {
     res.json(turnos);
 };
 
-//CREAR TURNO
+// CREAR TURNO
 const crearTurno = (req, res) => {
-    const turnos = listarTurnos();
+    const turnos = leerTurnos();
     const { id, clienteId, vehiculoId, fecha, hora, servicio } = req.body;
+    
     const nuevoTurno = new Turno(id, clienteId, vehiculoId, fecha, hora, servicio);
     turnos.push(nuevoTurno);
     guardarTurnos(turnos);
+    
     res.status(201).json({ mensaje: "Turno creado", turno: nuevoTurno });
 };
 
 //CONSULTAR TURNO
 const consultarTurnoPorId = (req, res) => {
-    const turnos = listarTurnos();
+    const turnos = leerTurnos();
     const id = parseInt(req.params.id);
     const turno = turnos.find(t => t.id === id);
     if (!turno) {
@@ -47,7 +49,7 @@ const consultarTurnoPorId = (req, res) => {
 
 //CANCELAR TURNO
 const cancelarTurnoPorId = (req, res) => {
-    const turnos = listarTurnos();
+    const turnos = leerTurnos();
     const id = parseInt(req.params.id);
     const turnoIndex = turnos.findIndex(t => t.id === id);
     if (turnoIndex === -1) {
@@ -56,15 +58,41 @@ const cancelarTurnoPorId = (req, res) => {
         });
     }
     turnos.splice(turnoIndex, 1);
-    fs.writeFileSync(rutaArchivo, JSON.stringify(turnos, null, 2));
+    guardarTurnos(turnos);
     res.json({
         mensaje: "Turno cancelado"
     });
+};
+
+// MODIFICAR / ACTUALIZAR TURNO
+const actualizarTurno = (req, res) => {
+    const turnos = leerTurnos();
+    const id = req.params.id;
+    const indice = turnos.findIndex(t => t.id == id);
+
+    if (indice === -1) {
+        return res.status(404).json({ mensaje: "Turno no encontrado" });
+    }
+
+    // Actualizamos los datos del turno manteniendo el ID original
+    turnos[indice] = {
+        id: Number(id),
+        clienteId: req.body.clienteId,
+        vehiculoId: req.body.vehiculoId,
+        fecha: req.body.fecha,
+        hora: req.body.hora,
+        servicio: req.body.servicio
+    };
+
+    guardarTurnos(turnos);
+    res.json({ mensaje: "Turno actualizado con éxito", turno: turnos[indice] });
 };
 
 module.exports = {
     listarTurnos,
     crearTurno,
     consultarTurnoPorId,
-    cancelarTurnoPorId
+    cancelarTurnoPorId,
+    actualizarTurno
 };
+
