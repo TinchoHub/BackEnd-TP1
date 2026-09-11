@@ -5,5 +5,19 @@
     "fecha": "2026-06-12",
     "hora": "15:00",
     "servicio": "Diagnóstico general"
+  },
+  {
+    "clienteId": 2,
+    "vehiculoId": 1,
+    "fecha": "2026-06-15",
+    "hora": "18:00",
+    "servicio": "Cambio de pastillas de freno"
+  },
+  {
+    "clienteId": 2,
+    "vehiculoId": 1,
+    "fecha": "2026-06-15",
+    "hora": "18:00",
+    "servicio": "Cambio de pastillas de freno"
   }
 ]
