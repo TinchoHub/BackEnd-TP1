@@ -15,6 +15,14 @@ const clientesRutas = require('./rutas/clientes');
 app.use('/clientes', clientesRutas);
 
 // ==========================================
+// Módulo de Vehículos - Implementado por Jorge
+// ==========================================
+
+const vehiculosRutas = require('./rutas/vehiculosRoutes');
+
+app.use('/vehiculos', vehiculosRutas);
+
+// ==========================================
 // Módulo de Turnos - Implementado por Luis
 // ==========================================
 
