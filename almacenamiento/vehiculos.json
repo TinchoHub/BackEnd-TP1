@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "patente": "AB123CD",
+    "marca": "Ford",
+    "modelo": "Fiesta",
+    "clienteId": 1
+  },
+  {
+    "id": 2,
+    "patente": "XY987ZZ",
+    "marca": "Chevrolet",
+    "modelo": "Corsa",
+    "clienteId": 1
+  }
+]
