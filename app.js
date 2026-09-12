@@ -10,7 +10,7 @@ app.use(express.json());
 // Módulo de Clientes - Implementado por Dalila
 // ==========================================
 
-const clientesRutas = require('./rutas/clientes');
+const clientesRutas = require('./rutas/clientesRoutes');
 
 app.use('/clientes', clientesRutas);
 
@@ -26,7 +26,7 @@ app.use('/vehiculos', vehiculosRutas);
 // Módulo de Turnos - Implementado por Luis
 // ==========================================
 
-const turnosRutas = require('./rutas/turnos');
+const turnosRutas = require('./rutas/turnosRoutes');
 
 app.use('/turnos', turnosRutas);
 

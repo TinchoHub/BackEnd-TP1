@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "clienteId": 2,
     "vehiculoId": 1,
     "fecha": "2026-06-12",
@@ -7,13 +8,7 @@
     "servicio": "Diagnóstico general"
   },
   {
-    "clienteId": 2,
-    "vehiculoId": 1,
-    "fecha": "2026-06-15",
-    "hora": "18:00",
-    "servicio": "Cambio de pastillas de freno"
-  },
-  {
+    "id": 2,
     "clienteId": 2,
     "vehiculoId": 1,
     "fecha": "2026-06-15",

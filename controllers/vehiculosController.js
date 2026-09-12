@@ -10,7 +10,7 @@ const leerVehiculos = () => {
         return [];
     }
     const data = fs.readFileSync(rutaArchivo, "utf-8");
-    return JSON.parse(data);
+    return data ? JSON.parse(data) : [];
 };
 
 //GUARDAR ARCHIVO DE VEHICULOS
@@ -41,17 +41,13 @@ const consultarVehiculoPorId = (req, res) => {
 const agregarVehiculo = (req, res) => {
     const vehiculos = leerVehiculos();
     const { patente, marca, modelo, clienteId } = req.body;
-
     if (!patente || !marca || !modelo || !clienteId) {
         return res.status(400).json({ mensaje: 'Faltan datos obligatorios (patente, marca, modelo, clienteId)' });
     }
-
-    const nuevoId = vehiculos.length > 0 ? vehiculos[vehiculos.length - 1].id + 1 : 1;
-    const nuevoVehiculo = new Vehiculo(nuevoId, patente, marca, modelo, parseInt(clienteId));
-    
+    const nuevoId = vehiculos.length > 0 ? Math.max(...vehiculos.map(v => v.id || 0)) + 1 : 1;
+    const nuevoVehiculo = new Vehiculo(nuevoId, patente, marca, modelo, parseInt(clienteId));    
     vehiculos.push(nuevoVehiculo);
-    guardarVehiculos(vehiculos);
-    
+    guardarVehiculos(vehiculos);    
     res.status(201).json({ mensaje: "Vehículo creado", vehiculo: nuevoVehiculo });
 };
 
@@ -60,18 +56,17 @@ const modificarVehiculoPorId = (req, res) => {
     const vehiculos = leerVehiculos();
     const id = parseInt(req.params.id);
     const index = vehiculos.findIndex(v => v.id === id);
-
     if (index === -1) {
         return res.status(404).json({ mensaje: "Vehículo no encontrado para modificar" });
     }
-
     const { patente, marca, modelo, clienteId } = req.body;
-
-    vehiculos[index].patente = patente || vehiculos[index].patente;
-    vehiculos[index].marca = marca || vehiculos[index].marca;
-    vehiculos[index].modelo = modelo || vehiculos[index].modelo;
-    vehiculos[index].clienteId = clienteId ? parseInt(clienteId) : vehiculos[index].clienteId;
-
+    vehiculos[index] = new Vehiculo(
+        id,
+        patente || vehiculos[index].patente,
+        marca || vehiculos[index].marca,
+        modelo || vehiculos[index].modelo,
+        clienteId ? parseInt(clienteId) : vehiculos[index].clienteId
+    );
     guardarVehiculos(vehiculos);
     res.json({ mensaje: "Vehículo modificado con éxito", vehiculo: vehiculos[index] });
 };
@@ -81,14 +76,11 @@ const eliminarVehiculoPorId = (req, res) => {
     let vehiculos = leerVehiculos();
     const id = parseInt(req.params.id);
     const index = vehiculos.findIndex(v => v.id === id);
-
     if (index === -1) {
         return res.status(404).json({ mensaje: "Vehículo no encontrado para eliminar" });
     }
-
     const vehiculoEliminado = vehiculos.splice(index, 1);
     guardarVehiculos(vehiculos);
-
     res.json({ mensaje: "Vehículo eliminado con éxito", vehiculo: vehiculoEliminado[0] });
 };
 
