@@ -1,0 +1,60 @@
+extends layout
+
+block contenido
+
+  h2 Nuevo turno
+
+  p Complete los datos para registrar un turno.
+
+  form(action="/turnos" method="POST")
+
+    .campo
+      label(for="clienteId") ID del cliente
+      input(
+        type="number"
+        id="clienteId"
+        name="clienteId"
+        min="1"
+        required
+      )
+
+    .campo
+      label(for="vehiculoId") ID del vehículo
+      input(
+        type="number"
+        id="vehiculoId"
+        name="vehiculoId"
+        min="1"
+        required
+      )
+
+    .campo
+      label(for="fecha") Fecha
+      input(
+        type="date"
+        id="fecha"
+        name="fecha"
+        required
+      )
+
+    .campo
+      label(for="hora") Hora
+      input(
+        type="time"
+        id="hora"
+        name="hora"
+        required
+      )
+
+    .campo
+      label(for="servicio") Servicio
+      input(
+        type="text"
+        id="servicio"
+        name="servicio"
+        required
+      )
+
+    button.boton(type="submit") Registrar turno
+
+  a.volver(href="/turnos") Volver a turnos

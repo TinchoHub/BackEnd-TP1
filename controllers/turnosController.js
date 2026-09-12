@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-const Turno = require("../modulos/Turno");
+const Turno = require("../models/Turno");
 
-const rutaArchivo = path.join(__dirname, "../almacenamiento/turnos.json");
+const rutaArchivo = path.join(__dirname, "../data/turnos.json");
 
 //LEER ARCHIVO DE TURNOS
 const leerTurnos = () => {

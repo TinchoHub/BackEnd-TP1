@@ -1,0 +1,28 @@
+extends layout
+
+block contenido
+
+  h2 Detalle del cliente
+
+  if cliente
+
+    section
+      h3 #{cliente.nombre} #{cliente.apellido}
+
+      p
+        strong ID:
+        |  #{cliente.id}
+
+      p
+        strong Teléfono:
+        |  #{cliente.telefono}
+
+      p
+        strong Email:
+        |  #{cliente.email}
+
+    a(href="/clientes") Volver a clientes
+
+  else
+
+    p Cliente no encontrado.

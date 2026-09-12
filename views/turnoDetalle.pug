@@ -1,0 +1,40 @@
+extends layout
+
+block contenido
+
+  h2 Detalle del turno
+
+  if turno
+
+    section
+      h3 #{turno.servicio}
+
+      p
+        strong ID:
+        |  #{turno.id}
+
+      p
+        strong Cliente ID:
+        |  #{turno.clienteId}
+
+      p
+        strong Vehículo ID:
+        |  #{turno.vehiculoId}
+
+      p
+        strong Fecha:
+        |  #{turno.fecha}
+
+      p
+        strong Hora:
+        |  #{turno.hora}
+
+      p
+        strong Servicio:
+        |  #{turno.servicio}
+
+    a.volver(href="/turnos") Volver a turnos
+
+  else
+
+    p Turno no encontrado.

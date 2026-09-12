@@ -1,0 +1,49 @@
+extends layout
+
+block contenido
+
+  h2 Nuevo cliente
+
+  p Complete los datos para registrar un cliente.
+
+  form(action="/clientes" method="POST")
+
+    .campo
+      label(for="nombre") Nombre
+      input(
+        type="text"
+        id="nombre"
+        name="nombre"
+        required
+      )
+
+    .campo
+      label(for="apellido") Apellido
+      input(
+        type="text"
+        id="apellido"
+        name="apellido"
+        required
+      )
+
+    .campo
+      label(for="telefono") Teléfono
+      input(
+        type="tel"
+        id="telefono"
+        name="telefono"
+        required
+      )
+
+    .campo
+      label(for="email") Email
+      input(
+        type="email"
+        id="email"
+        name="email"
+        required
+      )
+
+    button.boton(type="submit") Registrar cliente
+
+  a.volver(href="/clientes") Volver a clientes

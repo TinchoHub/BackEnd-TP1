@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
-const Vehiculo = require("../modulos/Vehiculo");
+const Vehiculo = require("../models/Vehiculo");
 
-const rutaArchivo = path.join(__dirname, "../almacenamiento/vehiculos.json");
+const rutaArchivo = path.join(__dirname, "../data/vehiculos.json");
 
 //LEER ARCHIVO DE VEHICULOS
 const leerVehiculos = () => {
