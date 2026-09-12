@@ -85,6 +85,8 @@ const eliminarVehiculoPorId = (req, res) => {
 };
 
 module.exports = {
+    leerVehiculos,
+    guardarVehiculos,
     listarVehiculos,
     consultarVehiculoPorId,
     agregarVehiculo,

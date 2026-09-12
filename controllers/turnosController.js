@@ -92,6 +92,8 @@ const actualizarTurno = (req, res) => {
 };
 
 module.exports = {
+    leerTurnos,
+    guardarTurnos,
     listarTurnos,
     crearTurno,
     consultarTurnoPorId,

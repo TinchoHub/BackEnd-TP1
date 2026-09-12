@@ -97,6 +97,8 @@ const eliminarClientePorId = (req, res) => {
 };
 
 module.exports = {
+    leerClientes,
+    guardarClientes,
     listarClientes,
     agregarCliente,
     consultarClientePorId,
