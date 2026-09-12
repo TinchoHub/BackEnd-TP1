@@ -12,5 +12,12 @@
     "apellido": "López",
     "telefono": "3514445678",
     "email": "maria@gmail.com"
+  },
+  {
+    "id": 3,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "telefono": "1145454545",
+    "email": "juan@perez.com"
   }
 ]

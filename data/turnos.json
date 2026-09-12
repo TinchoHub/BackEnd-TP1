@@ -14,5 +14,13 @@
     "fecha": "2026-06-15",
     "hora": "18:00",
     "servicio": "Cambio de pastillas de freno"
+  },
+  {
+    "id": 3,
+    "clienteId": "6",
+    "vehiculoId": "3",
+    "fecha": "2026-11-01",
+    "hora": "14:00",
+    "servicio": "cambio aceite"
   }
 ]

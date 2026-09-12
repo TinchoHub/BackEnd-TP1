@@ -1,30 +1,42 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const PORT = 3000;
+
+// ==========================================
+// Configuración de Motor de Plantillas (Pug)
+// ==========================================
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+
+// Archivos estáticos (CSS, JS, imágenes de /public)
+app.use(express.static(path.join(__dirname, "public")));
+
+// Middlewares para procesar datos
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // ==========================================
 // Módulo de Clientes - Implementado por Dalila
 // ==========================================
 const clientesRutas = require('./routes/clientesRoutes');
-app.use('/clientes', clientesRutas);
+app.use('/api/clientes', clientesRutas);
 
 // ==========================================
 // Módulo de Vehículos - Implementado por Jorge
 // ==========================================
 const vehiculosRutas = require('./routes/vehiculosRoutes');
-app.use('/vehiculos', vehiculosRutas);
+app.use('/api/vehiculos', vehiculosRutas);
 
 // ==========================================
 // Módulo de Turnos - Implementado por Luis
 // ==========================================
 const turnosRutas = require('./routes/turnosRoutes');
-app.use('/turnos', turnosRutas);
+app.use('/api/turnos', turnosRutas);
 
 // Rutas Web (Pug)
 const vistasRutas = require("./routes/vistas");
 app.use("/", vistasRutas);
-
 
 app.listen(PORT, () => {
     console.log("Servidor corriendo en puerto " + PORT);
