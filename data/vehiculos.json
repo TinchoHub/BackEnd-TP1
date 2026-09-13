@@ -12,5 +12,12 @@
     "marca": "Chevrolet",
     "modelo": "Corsa",
     "clienteId": 1
+  },
+  {
+    "id": 3,
+    "patente": "AA111OK",
+    "marca": "Chevrolet",
+    "modelo": "Camaro",
+    "clienteId": 4
   }
 ]

@@ -19,5 +19,12 @@
     "apellido": "Perez",
     "telefono": "1145454545",
     "email": "juan@perez.com"
+  },
+  {
+    "id": 4,
+    "nombre": "Juan Manuel",
+    "apellido": "Fangio",
+    "telefono": "351326548",
+    "email": "juan@gmail.com"
   }
 ]
