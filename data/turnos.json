@@ -17,10 +17,18 @@
   },
   {
     "id": 3,
-    "clienteId": "6",
-    "vehiculoId": "3",
-    "fecha": "2026-11-01",
-    "hora": "14:00",
-    "servicio": "cambio aceite"
+    "clienteId": 6,
+    "vehiculoId": 4,
+    "fecha": "2222-02-12",
+    "hora": "22:22",
+    "servicio": "service"
+  },
+  {
+    "id": 4,
+    "clienteId": 5,
+    "vehiculoId": 4,
+    "fecha": "1111-11-11",
+    "hora": "11:11",
+    "servicio": "service"
   }
 ]

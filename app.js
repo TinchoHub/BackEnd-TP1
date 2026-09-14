@@ -1,20 +1,19 @@
 const express = require("express");
 const path = require("path");
+const logger = require("./middlewares/logger");
+
 const app = express();
 const PORT = 3000;
 
-// ==========================================
-// Configuración de Motor de Plantillas (Pug)
-// ==========================================
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
-// Archivos estáticos (CSS, JS, imágenes de /public)
 app.use(express.static(path.join(__dirname, "public")));
 
-// Middlewares para procesar datos
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(logger);
 
 // ==========================================
 // Módulo de Clientes - Implementado por Dalila

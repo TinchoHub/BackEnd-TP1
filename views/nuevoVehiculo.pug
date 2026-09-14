@@ -36,14 +36,17 @@ block contenido
       )
 
     .campo
-      label(for="clienteId") ID del cliente
-      input(
-        type="number"
+      label(for="clienteId") Cliente
+
+      select(
         id="clienteId"
         name="clienteId"
-        min="1"
         required
       )
+        option(value="" disabled selected) Seleccione un cliente
+
+        each cliente in clientes
+          option(value=cliente.id) #{cliente.nombre} #{cliente.apellido}
 
     button.boton(type="submit") Registrar vehículo
 

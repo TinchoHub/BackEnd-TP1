@@ -719,7 +719,8 @@ form {
   font-weight: 700;
 }
 
-.campo input {
+.campo input,
+.campo select  {
   width: 100%;
 
   padding: 13px 14px;
@@ -738,6 +739,39 @@ form {
   transition:
     border-color var(--transition),
     box-shadow var(--transition);
+    .campo select {
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #ff5a0a 50%),
+        linear-gradient(135deg, #ff5a0a 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 20px) 50%,
+        calc(100% - 15px) 50%;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+
+    background-repeat: no-repeat;
+
+    padding-right: 45px;
+}
+
+.campo select option {
+    background-color: #0d1b26;
+    color: #ffffff;
+}
+.campo input:focus,
+.campo select:focus {
+    outline: none;
+    border-color: #ff5a0a;
+    box-shadow: 0 0 0 3px rgba(255, 90, 10, 0.12);
+}
 }
 
 .campo input::placeholder {
@@ -1193,4 +1227,34 @@ form {
 
 .empty-state p {
   color: var(--gray);
+}
+.acciones-detalle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.boton-eliminar {
+    background-color: #b42318;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.boton-eliminar:hover {
+    background-color: #d92d20;
+    transform: translateY(-1px);
+}
+
+.detalle-card {
+    background-color: #0d1b26;
+    border: 1px solid #20303d;
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 650px;
 }

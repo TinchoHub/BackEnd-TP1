@@ -41,7 +41,11 @@ const renderVehiculos = (req, res) => {
 };
 
 const renderNuevoVehiculo = (req, res) => {
-    res.render("nuevoVehiculo");
+    const clientes = leerClientes();
+
+    res.render("nuevoVehiculo", {
+        clientes
+    });
 };
 
 const renderVehiculoDetalle = (req, res) => {
@@ -61,7 +65,13 @@ const renderTurnos = (req, res) => {
 };
 
 const renderNuevoTurno = (req, res) => {
-    res.render("nuevoTurno");
+    const clientes = leerClientes();
+    const vehiculos = leerVehiculos();
+
+    res.render("nuevoTurno", {
+        clientes,
+        vehiculos
+    });
 };
 
 const renderTurnoDetalle = (req, res) => {

@@ -6,7 +6,7 @@ block contenido
 
   if cliente
 
-    section
+    section.detalle-card
       h3 #{cliente.nombre} #{cliente.apellido}
 
       p
@@ -21,7 +21,13 @@ block contenido
         strong Email:
         |  #{cliente.email}
 
-    a(href="/clientes") Volver a clientes
+      .acciones-detalle
+        button.boton-eliminar(
+          type="button"
+          onclick=`eliminarCliente(${cliente.id})`
+        ) Eliminar cliente
+
+        a.volver(href="/clientes") Volver a clientes
 
   else
 

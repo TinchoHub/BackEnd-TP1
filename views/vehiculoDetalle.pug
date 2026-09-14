@@ -6,7 +6,7 @@ block contenido
 
   if vehiculo
 
-    section
+    section.detalle-card
       h3 #{vehiculo.marca} #{vehiculo.modelo}
 
       p
@@ -29,7 +29,13 @@ block contenido
         strong Cliente ID:
         |  #{vehiculo.clienteId}
 
-    a.volver(href="/vehiculos") Volver a vehículos
+      .acciones-detalle
+        button.boton-eliminar(
+          type="button"
+          onclick=`eliminarVehiculo(${vehiculo.id})`
+        ) Eliminar vehículo
+
+        a.volver(href="/vehiculos") Volver a vehículos
 
   else
 

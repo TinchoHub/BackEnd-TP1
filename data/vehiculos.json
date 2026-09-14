@@ -19,5 +19,12 @@
     "marca": "Chevrolet",
     "modelo": "Camaro",
     "clienteId": 4
+  },
+  {
+    "id": 4,
+    "patente": "a244lah",
+    "marca": "Honda",
+    "modelo": "2026",
+    "clienteId": 5
   }
 ]

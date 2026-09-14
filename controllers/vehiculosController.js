@@ -2,7 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const Vehiculo = require("../models/Vehiculo");
 
+const { leerClientes } = require("./clientesController");
+
 const rutaArchivo = path.join(__dirname, "../data/vehiculos.json");
+const rutaTurnos = path.join(__dirname, "../data/turnos.json");
 
 //LEER ARCHIVO DE VEHICULOS
 const leerVehiculos = () => {
@@ -10,6 +13,16 @@ const leerVehiculos = () => {
         return [];
     }
     const data = fs.readFileSync(rutaArchivo, "utf-8");
+    return data ? JSON.parse(data) : [];
+};
+
+const leerTurnos = () => {
+    if (!fs.existsSync(rutaTurnos)) {
+        return [];
+    }
+
+    const data = fs.readFileSync(rutaTurnos, "utf-8");
+
     return data ? JSON.parse(data) : [];
 };
 
@@ -44,6 +57,17 @@ const agregarVehiculo = (req, res) => {
     if (!patente || !marca || !modelo || !clienteId) {
         return res.status(400).json({ mensaje: 'Faltan datos obligatorios (patente, marca, modelo, clienteId)' });
     }
+    const clientes = leerClientes();
+
+const clienteExiste = clientes.some(
+    cliente => cliente.id === parseInt(clienteId)
+);
+
+if (!clienteExiste) {
+    return res.status(400).json({
+        mensaje: "El cliente seleccionado no existe"
+    });
+}
     const nuevoId = vehiculos.length > 0 ? Math.max(...vehiculos.map(v => v.id || 0)) + 1 : 1;
     const nuevoVehiculo = new Vehiculo(nuevoId, patente, marca, modelo, parseInt(clienteId));    
     vehiculos.push(nuevoVehiculo);
@@ -73,15 +97,39 @@ const modificarVehiculoPorId = (req, res) => {
 
 // ELIMINAR VEHICULO
 const eliminarVehiculoPorId = (req, res) => {
-    let vehiculos = leerVehiculos();
+    const vehiculos = leerVehiculos();
+    const turnos = leerTurnos();
+
     const id = parseInt(req.params.id);
-    const index = vehiculos.findIndex(v => v.id === id);
-    if (index === -1) {
-        return res.status(404).json({ mensaje: "Vehículo no encontrado para eliminar" });
+
+    const vehiculoIndex = vehiculos.findIndex(
+        vehiculo => vehiculo.id === id
+    );
+
+    if (vehiculoIndex === -1) {
+        return res.status(404).json({
+            mensaje: "Vehículo no encontrado"
+        });
     }
-    const vehiculoEliminado = vehiculos.splice(index, 1);
+
+    const tieneTurnos = turnos.some(
+        turno => parseInt(turno.vehiculoId) === id
+    );
+
+    if (tieneTurnos) {
+        return res.status(400).json({
+            mensaje:
+                "No se puede eliminar el vehículo porque tiene turnos asociados"
+        });
+    }
+
+    vehiculos.splice(vehiculoIndex, 1);
+
     guardarVehiculos(vehiculos);
-    res.json({ mensaje: "Vehículo eliminado con éxito", vehiculo: vehiculoEliminado[0] });
+
+    res.json({
+        mensaje: "Vehículo eliminado correctamente"
+    });
 };
 
 module.exports = {

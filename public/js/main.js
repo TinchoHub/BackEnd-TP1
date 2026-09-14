@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const rutaActual = window.location.pathname;
 
     enlaces.forEach(enlace => {
+
         const rutaEnlace = enlace.getAttribute("href");
 
         enlace.classList.remove("active");
@@ -18,6 +19,70 @@ document.addEventListener("DOMContentLoaded", () => {
         ) {
             enlace.classList.add("active");
         }
+            // ==========================================
+    // FILTRAR VEHÍCULOS SEGÚN CLIENTE
+    // ==========================================
+
+    const clienteSelect = document.querySelector("#clienteId");
+    const vehiculoSelect = document.querySelector("#vehiculoId");
+
+    if (clienteSelect && vehiculoSelect) {
+
+        const opcionesVehiculos = Array.from(
+            vehiculoSelect.querySelectorAll(
+                "option[data-cliente-id]"
+            )
+        );
+
+        // Al cargar la página, ocultar todos los vehículos
+        opcionesVehiculos.forEach(opcion => {
+            opcion.hidden = true;
+            opcion.disabled = true;
+        });
+
+        clienteSelect.addEventListener("change", () => {
+
+            const clienteSeleccionado = clienteSelect.value;
+
+            // Resetear el selector de vehículo
+            vehiculoSelect.innerHTML =
+                '<option value="" selected disabled>Seleccione un vehículo</option>';
+
+            const vehiculosDelCliente =
+                opcionesVehiculos.filter(
+                    opcion =>
+                        opcion.dataset.clienteId ===
+                        clienteSeleccionado
+                );
+
+            if (vehiculosDelCliente.length === 0) {
+
+                vehiculoSelect.innerHTML =
+                    '<option value="" selected disabled>Este cliente no tiene vehículos registrados</option>';
+
+                vehiculoSelect.disabled = true;
+
+                return;
+            }
+
+            vehiculosDelCliente.forEach(opcion => {
+
+                const nuevaOpcion = opcion.cloneNode(true);
+
+                nuevaOpcion.hidden = false;
+                nuevaOpcion.disabled = false;
+
+                vehiculoSelect.appendChild(
+                    nuevaOpcion
+                );
+
+            });
+
+            vehiculoSelect.disabled = false;
+
+        });
+
+    }
     });
 
 
@@ -40,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             card.style.setProperty("--mouse-x", `${x}px`);
             card.style.setProperty("--mouse-y", `${y}px`);
+
         });
 
     });
@@ -70,8 +136,11 @@ document.addEventListener("DOMContentLoaded", () => {
             actual += incremento;
 
             if (actual >= objetivo) {
+
                 contador.textContent = objetivo;
+
                 clearInterval(intervalo);
+
                 return;
             }
 
@@ -81,33 +150,204 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-  // ==========================================
-// BUSCADOR GENÉRICO DE TABLAS
+
+    // ==========================================
+    // BUSCADOR GENÉRICO DE TABLAS
+    // ==========================================
+
+    const buscadores = document.querySelectorAll(
+        "[data-table-search]"
+    );
+
+    buscadores.forEach(buscador => {
+
+        const tablaId = buscador.dataset.tableSearch;
+
+        const filas = document.querySelectorAll(
+            `#${tablaId} tbody tr`
+        );
+
+        buscador.addEventListener("input", () => {
+
+            const busqueda = buscador.value
+                .toLowerCase()
+                .trim();
+
+            filas.forEach(fila => {
+
+                const contenido =
+                    fila.textContent.toLowerCase();
+
+                fila.style.display =
+                    contenido.includes(busqueda)
+                        ? ""
+                        : "none";
+
+            });
+
+        });
+
+    });
+
+});
+
+
+// ==========================================
+// CANCELAR TURNO
 // ==========================================
 
-const buscadores = document.querySelectorAll("[data-table-search]");
+async function cancelarTurno(id) {
 
-buscadores.forEach(buscador => {
+    const confirmar = confirm(
+        "¿Seguro que querés cancelar este turno?"
+    );
 
-    const tablaId = buscador.dataset.tableSearch;
-    const filas = document.querySelectorAll(`#${tablaId} tbody tr`);
+    if (!confirmar) {
+        return;
+    }
 
-    buscador.addEventListener("input", () => {
+    try {
 
-        const busqueda = buscador.value
-            .toLowerCase()
-            .trim();
+        const respuesta = await fetch(
+            `/api/turnos/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
 
-        filas.forEach(fila => {
+        const resultado = await respuesta.json();
 
-            const contenido = fila.textContent.toLowerCase();
+        if (!respuesta.ok) {
 
-            fila.style.display =
-                contenido.includes(busqueda)
-                    ? ""
-                    : "none";
-        });
-    });
-});
+            alert(
+                resultado.mensaje ||
+                "No se pudo cancelar el turno"
+            );
 
-});
+            return;
+        }
+
+        alert("Turno cancelado correctamente");
+
+        window.location.href = "/turnos";
+
+    } catch (error) {
+
+        console.error(
+            "Error al cancelar el turno:",
+            error
+        );
+
+        alert(
+            "Ocurrió un error al cancelar el turno"
+        );
+
+    }
+
+}
+// ==========================================
+// ELIMINAR VEHÍCULO
+// ==========================================
+
+async function eliminarVehiculo(id) {
+
+    const confirmar = confirm(
+        "¿Seguro que querés eliminar este vehículo?"
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
+    try {
+
+        const respuesta = await fetch(
+            `/api/vehiculos/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        const resultado = await respuesta.json();
+
+        if (!respuesta.ok) {
+
+            alert(
+                resultado.mensaje ||
+                "No se pudo eliminar el vehículo"
+            );
+
+            return;
+        }
+
+        alert("Vehículo eliminado correctamente");
+
+        window.location.href = "/vehiculos";
+
+    } catch (error) {
+
+        console.error(
+            "Error al eliminar el vehículo:",
+            error
+        );
+
+        alert(
+            "Ocurrió un error al eliminar el vehículo"
+        );
+
+    }
+
+}
+// ==========================================
+// ELIMINAR CLIENTE
+// ==========================================
+
+async function eliminarCliente(id) {
+
+    const confirmar = confirm(
+        "¿Seguro que querés eliminar este cliente?"
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
+    try {
+
+        const respuesta = await fetch(
+            `/api/clientes/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        const resultado = await respuesta.json();
+
+        if (!respuesta.ok) {
+
+            alert(
+                resultado.mensaje ||
+                "No se pudo eliminar el cliente"
+            );
+
+            return;
+        }
+
+        alert("Cliente eliminado correctamente");
+
+        window.location.href = "/clientes";
+
+    } catch (error) {
+
+        console.error(
+            "Error al eliminar el cliente:",
+            error
+        );
+
+        alert(
+            "Ocurrió un error al eliminar el cliente"
+        );
+
+    }
+
+}
