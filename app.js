@@ -37,6 +37,12 @@ app.use('/api/turnos', turnosRutas);
 const vistasRutas = require("./routes/vistas");
 app.use("/", vistasRutas);
 
+const notFoundMiddleware = require("./middlewares/notFoundMiddleware");
+app.use(notFoundMiddleware);
+
+const errorHandler = require('./middlewares/errorHandler');
+app.use(errorHandler);
+
 app.listen(PORT, () => {
-    console.log("Servidor corriendo en puerto " + PORT);
+    console.log(`Servidor en http://localhost:${PORT}`);
 });
