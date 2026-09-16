@@ -1228,7 +1228,7 @@ form {
 .empty-state p {
   color: var(--gray);
 }
-
+<<<<<<< Updated upstream
 .acciones-detalle {
     display: flex;
     align-items: center;
@@ -1258,7 +1258,7 @@ form {
     border-radius: 16px;
     padding: 28px;
     max-width: 650px;
-  }
+=======
 
 /* =========================================================
    VISTA 404 - NOT FOUND
@@ -1306,4 +1306,5 @@ form {
   padding: 12px 32px;
   font-size: 0.95rem;
   letter-spacing: 0.03em;
+>>>>>>> Stashed changes
 }

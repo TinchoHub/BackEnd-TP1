@@ -119,6 +119,39 @@ TP1/
 
 ## Integrantes y Roles del Proyecto
 
+* **Dalila — Módulo Clientes:**
+  * Creación de la clase `Cliente`.
+  * Creación y administración del archivo `clientes.json`.
+  * Implementación de la lógica del controlador para listar, consultar, agregar, modificar y eliminar clientes.
+  * Ejecución de pruebas unitarias y de endpoints del módulo.
+
+* **Jorge — Módulo Vehículos:**
+  * Creación de la clase `Vehiculo`.
+  * Creación y administración del archivo `vehiculos.json`.
+  * Implementación de funciones para registrar, consultar, modificar y dar de baja vehículos.
+  * Vinculación lógica de vehículos con su respectivo `clienteId`.
+  * Pruebas y validación del módulo de vehículos.
+
+* **Luis — Módulo Turnos:**
+  * Creación de la clase `Turno`.
+  * Creación y administración del archivo `turnos.json`.
+  * Implementación de la lógica para registrar, consultar, actualizar y cancelar turnos del taller.
+  * Relación e integridad de datos entre turnos, clientes y vehículos.
+  * Pruebas del ciclo de vida del turno.
+
+* **Martín — Express y Middleware:**
+  * Configuración general de la arquitectura del servidor con Node.js y Express.
+  * Configuración de rutas y vinculación de endpoints con sus controladores.
+  * Implementación de middlewares de aplicación, validaciones defensivas y control de errores.
+  * Configuración y estandarización del uso de rutas dinámicas (`/:id`).
+  * Integración modular y resolución de consistencia entre los componentes del backend.
+
+* **Martina — Vistas Pug e Integración:**
+  * Construcción de la interfaz de usuario y vistas SSR utilizando el motor Pug.
+  * Visualización y renderizado dinámico de los listados y detalles de clientes, vehículos y turnos.
+  * Conexión fluida entre las vistas de usuario y las rutas/controladores del sistema.
+  * Pruebas generales de navegación en el navegador web.
+  * Captura, organización y documentación de evidencias visuales para la entrega.
 
 ---
 
