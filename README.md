@@ -11,11 +11,11 @@ A continuación se detalla cómo se resolvieron los requerimientos técnicos y f
 | Consignas / Requerimiento Académico | Resolución Implementada en el Proyecto | Archivos Asociados |
 | :--- | :--- | :--- |
 | **1. Arquitectura MVC** | Separación estricta de responsabilidades entre modelos de datos, controladores de negocio, enrutadores y vistas. | `models/`, `controllers/`, `routes/`, `views/` |
-| **2. Persistencia de Datos** | Almacenamiento local mediante archivos planos en formato JSON utilizando el módulo nativo de Node.js (`fs`)[cite: 3]. | `data/clientes.json`, `data/turnos.json`, `data/vehiculos.json`[cite: 3] |
-| **3. Motor de Plantillas (SSR)** | Uso de **Pug**[cite: 3] para la generación dinámica de la interfaz web, layouts reutilizables y paneles de control. | `views/layout.pug`, `views/index.pug`, `views/*.pug`[cite: 3] |
-| **4. Enrutamiento Modular** | Separación de rutas por entidad (clientes, vehículos, turnos) y enrutador específico para vistas web[cite: 3]. | `routes/clientesRoutes.js`, `routes/turnosRoutes.js`, `routes/vehiculosRoutes.js`, `routes/vistas.js`[cite: 3] |
-| **5. Middleware de Validación** | Control de datos obligatorios y formatos (como correos electrónicos) previos al registro o modificación[cite: 3]. | `middlewares/validarCliente.js`[cite: 3] |
-| **6. Manejo de Errores y 404** | Interceptores dedicados para rutas inexistentes (con respuesta dual JSON/HTML) y controlador global de excepciones (500)[cite: 3]. | `middlewares/notFoundMiddleware.js`, `middlewares/errorHandler.js`[cite: 3] |
+| **2. Persistencia de Datos** | Almacenamiento local mediante archivos planos en formato JSON utilizando el módulo nativo de Node.js (`fs`). | `data/clientes.json`, `data/turnos.json`, `data/vehiculos.json` |
+| **3. Motor de Plantillas (SSR)** | Uso de **Pug** para la generación dinámica de la interfaz web, layouts reutilizables y paneles de control. | `views/layout.pug`, `views/index.pug`, `views/*.pug` |
+| **4. Enrutamiento Modular** | Separación de rutas por entidad (clientes, vehículos, turnos) y enrutador específico para vistas web. | `routes/clientesRoutes.js`, `routes/turnosRoutes.js`, `routes/vehiculosRoutes.js`, `routes/vistas.js` |
+| **5. Middleware de Validación** | Control de datos obligatorios y formatos (como correos electrónicos) previos al registro o modificación. | `middlewares/validarCliente.js` |
+| **6. Manejo de Errores y 404** | Interceptores dedicados para rutas inexistentes (con respuesta dual JSON/HTML) y controlador global de excepciones (500). | `middlewares/notFoundMiddleware.js`, `middlewares/errorHandler.js` |
 
 ---
 
@@ -23,37 +23,108 @@ A continuación se detalla cómo se resolvieron los requerimientos técnicos y f
 
 ```text
 TP1/
-├── app.js                          # Punto de entrada y configuración del servidor[cite: 3]
-├── package.json                    # Dependencias y scripts del proyecto[cite: 3]
+├── app.js                          # Punto de entrada y configuración del servidor
+├── package.json                    # Dependencias y scripts del proyecto
 ├── package-lock.json[cite: 3]
-├── controllers/                    # Lógica de negocio y renderizado[cite: 3]
-│   ├── clientesController.js[cite: 3]
-│   ├── turnosController.js[cite: 3]
-│   ├── vehiculosController.js[cite: 3]
-│   └── vistasController.js[cite: 3]
-├── data/                           # Almacenamiento persistente en JSON[cite: 3]
-│   ├── clientes.json[cite: 3]
-│   ├── turnos.json[cite: 3]
-│   └── vehiculos.json[cite: 3]
-├── middlewares/                    # Interceptores y filtros de solicitudes[cite: 3]
-│   ├── errorHandler.js[cite: 3]
-│   ├── notFoundMiddleware.js[cite: 3]
-│   └── validarCliente.js[cite: 3]
-├── models/                         # Clases y estructuras de datos[cite: 3]
-│   ├── Cliente.js[cite: 3]
-│   ├── Turno.js[cite: 3]
-│   └── Vehiculo.js[cite: 3]
-├── public/                         # Recursos estáticos de acceso público[cite: 3]
-│   ├── css/styles.css[cite: 3]
-│   ├── img/ (404.png, autobox-logo.png, hero-auto.png)[cite: 3]
-│   └── js/main.js[cite: 3]
-├── routes/                         # Enrutadores modulares (Web y API)[cite: 3]
-│   ├── clientesRoutes.js[cite: 3]
-│   ├── turnosRoutes.js[cite: 3]
-│   ├── vehiculosRoutes.js[cite: 3]
-│   └── vistas.js[cite: 3]
-└── views/                          # Plantillas de vistas Pug[cite: 3]
-    ├── 404.pug[cite: 3]
-    ├── index.pug[cite: 3]
-    ├── layout.pug[cite: 3]
-    └── *.pug (vistas de detalle y formularios)[cite: 3]
+├── controllers/                    # Lógica de negocio y renderizado
+│   ├── clientesController.js
+│   ├── turnosController.js
+│   ├── vehiculosController.js
+│   └── vistasController.js
+├── data/                           # Almacenamiento persistente en JSON
+│   ├── clientes.json
+│   ├── turnos.json
+│   └── vehiculos.json
+├── middlewares/                    # Interceptores y filtros de solicitudes
+│   ├── errorHandler.js
+│   ├── notFoundMiddleware.js
+│   └── validarCliente.js
+├── models/                         # Clases y estructuras de datos
+│   ├── Cliente.js
+│   ├── Turno.js
+│   └── Vehiculo.js
+├── public/                         # Recursos estáticos de acceso público
+│   ├── css/styles.css
+│   ├── img/ (404.png, autobox-logo.png, hero-auto.png)
+│   └── js/main.js
+├── routes/                         # Enrutadores modulares (Web y API)
+│   ├── clientesRoutes.js
+│   ├── turnosRoutes.js
+│   ├── vehiculosRoutes.js
+│   └── vistas.js
+└── views/                          # Plantillas de vistas Pug
+    ├── 404.pug
+    ├── index.pug
+    ├── layout.pug
+    └── *.pug (vistas de detalle y formularios)
+    ---
+
+## Características Implementadas
+
+1. **Programación Orientada a Objetos (POO):** Modelado estructurado a través de las clases `Cliente`, `Vehiculo` y `Turno` para instanciar objetos tipados antes de guardarlos en el sistema.
+2. **Persistencia en JSON:** Lectura y escritura sincronizada y segura de archivos JSON, con validación de existencia previa mediante `fs.existsSync` y autoincremento dinámico de identificadores (`id`).
+3. **Rutas Dinámicas:** Uso de parámetros de ruta (`/:id`) para realizar consultas, modificaciones y bajas puntuales sobre cada recurso.
+4. **Middlewares:**
+   * `express.json()` para parsear el cuerpo de peticiones entrantes en formato JSON.
+   * Middleware de validación defensiva para verificar campos obligatorios en peticiones de alta.
+   * Middleware 404 híbrido que responde con JSON para endpoints de la API o renderiza la vista visual `404.pug` para la navegación web.
+   * Middleware centralizado para el tratamiento de errores no capturados (código 500).
+5. **Motor de Plantillas Pug:** Renderizado dinámico con layout persistente (`sidebar`), tablas interactivas de datos y formularios para la gestión del taller mecánico.
+
+---
+
+## Endpoints de la API REST
+
+**Módulo Clientes (/clientes o /api/clientes)**
+* `GET /` - Listar todos los clientes.
+* `GET /:id` - Consultar un cliente por su ID.
+* `POST /` - Dar de alta un nuevo cliente (genera ID automático).
+* `PUT /:id` - Modificar un cliente existente.
+* `DELETE /:id` - Eliminar un cliente por su ID.
+
+**Módulo Vehículos (/vehiculos o /api/vehiculos)**
+* `GET /` - Listar todos los vehículos.
+* `GET /:id` - Consultar un vehículo por su ID.
+* `POST /` - Registrar un nuevo vehículo asociado a un clienteId.
+* `PUT /:id` - Actualizar los datos de un vehículo.
+* `DELETE /:id` - Eliminar un vehículo por su ID.
+
+**Módulo Turnos (/turnos o /api/turnos)**
+* `GET /` - Listar todos los turnos registrados.
+* `GET /:id` - Consultar un turno puntual por su ID.
+* `POST /` - Asignar un nuevo turno en el taller.
+* `PUT /:id` - Modificar los datos o servicio de un turno.
+* `DELETE /:id` - Cancelar o eliminar un turno por su ID.
+
+---
+
+## Instalación y Puesta en Marcha
+
+1. Clonar el repositorio:
+   git clone <URL_DEL_REPOSITORIO>
+
+2. Ingresar a la carpeta del proyecto:
+   cd TP1
+
+3. Instalar las dependencias necesarias:
+   npm install
+
+4. Iniciar el servidor en modo desarrollo:
+   npx nodemon app.js
+
+5. Acceso al sistema:
+   Abrir el navegador web e ingresar a: http://localhost:3000
+
+---
+
+## Integrantes y Roles del Proyecto
+
+
+---
+
+## Bibliografía y Documentación Consultada
+
+* Express.js - Documentación Oficial: https://expressjs.com/
+* Node.js Documentation - Módulo File System (fs): https://nodejs.org/api/fs.html
+* Pug Getting Started & Syntax Guide: https://pugjs.org/
+* MDN Web Docs - Métodos HTTP y Códigos de Estado de Respuesta: https://developer.mozilla.org/es/docs/Web/HTTP
