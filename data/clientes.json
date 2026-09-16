@@ -47,5 +47,19 @@
     "apellido": "Bistagnino",
     "telefono": "asdfghjk",
     "email": "mbistagnino-@dmetrop.com.ar"
+  },
+  {
+    "id": 8,
+    "nombre": "Oscar Buenaventura",
+    "apellido": "Buenventura",
+    "telefono": "1150345678",
+    "email": "oscar111@gmail.com"
+  },
+  {
+    "id": 9,
+    "nombre": "Francisco Luis",
+    "apellido": "Bronzi",
+    "telefono": "1150206789",
+    "email": "franciscobronzi@gmail.com"
   }
 ]

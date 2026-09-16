@@ -24,11 +24,27 @@
     "servicio": "service"
   },
   {
-    "id": 4,
-    "clienteId": 5,
-    "vehiculoId": 4,
-    "fecha": "1111-11-11",
-    "hora": "11:11",
-    "servicio": "service"
+    "id": 5,
+    "clienteId": 4,
+    "vehiculoId": 3,
+    "fecha": "2026-09-23",
+    "hora": "12:00",
+    "servicio": "Cambio Amortiguadores"
+  },
+  {
+    "id": 6,
+    "clienteId": 1,
+    "vehiculoId": 1,
+    "fecha": "2026-09-30",
+    "hora": "15:30",
+    "servicio": "Cambio de Aceite y Cambio pastilla de Freno 4 ruedas"
+  },
+  {
+    "id": 7,
+    "clienteId": 9,
+    "vehiculoId": 7,
+    "fecha": "2026-10-10",
+    "hora": "10:00",
+    "servicio": "Alineacion y Balanceo"
   }
 ]
