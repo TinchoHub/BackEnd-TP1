@@ -14,7 +14,7 @@ A continuación se detalla cómo se resolvieron los requerimientos técnicos y f
 | **2. Persistencia de Datos** | Almacenamiento local mediante archivos planos en formato JSON utilizando el módulo nativo de Node.js (`fs`). | `data/clientes.json`, `data/turnos.json`, `data/vehiculos.json` |
 | **3. Motor de Plantillas (SSR)** | Uso de **Pug** para la generación dinámica de la interfaz web, layouts reutilizables y paneles de control. | `views/layout.pug`, `views/index.pug`, `views/*.pug` |
 | **4. Enrutamiento Modular** | Separación de rutas por entidad (clientes, vehículos, turnos) y enrutador específico para vistas web. | `routes/clientesRoutes.js`, `routes/turnosRoutes.js`, `routes/vehiculosRoutes.js`, `routes/vistas.js` |
-| **5. Middleware de Validación** | Control de datos obligatorios y formatos (como correos electrónicos) previos al registro o modificación. | `middlewares/validarCliente.js` |
+| **5. Middleware** | `express.json()` para parsear el cuerpo de peticiones entrantes en formato JSON |
 | **6. Manejo de Errores y 404** | Interceptores dedicados para rutas inexistentes (con respuesta dual JSON/HTML) y controlador global de excepciones (500). | `middlewares/notFoundMiddleware.js`, `middlewares/errorHandler.js` |
 
 ---
@@ -35,10 +35,6 @@ TP1/
 │   ├── clientes.json
 │   ├── turnos.json
 │   └── vehiculos.json
-├── middlewares/                    # Interceptores y filtros de solicitudes
-│   ├── errorHandler.js
-│   ├── notFoundMiddleware.js
-│   └── validarCliente.js
 ├── models/                         # Clases y estructuras de datos
 │   ├── Cliente.js
 │   ├── Turno.js
@@ -66,9 +62,6 @@ TP1/
 3. **Rutas Dinámicas:** Uso de parámetros de ruta (`/:id`) para realizar consultas, modificaciones y bajas puntuales sobre cada recurso.
 4. **Middlewares:**
    * `express.json()` para parsear el cuerpo de peticiones entrantes en formato JSON.
-   * Middleware de validación defensiva para verificar campos obligatorios en peticiones de alta.
-   * Middleware 404 híbrido que responde con JSON para endpoints de la API o renderiza la vista visual `404.pug` para la navegación web.
-   * Middleware centralizado para el tratamiento de errores no capturados (código 500).
 5. **Motor de Plantillas Pug:** Renderizado dinámico con layout persistente (`sidebar`), tablas interactivas de datos y formularios para la gestión del taller mecánico.
 
 ---
@@ -142,7 +135,6 @@ TP1/
 * **Martín — Express y Middleware:**
   * Configuración general de la arquitectura del servidor con Node.js y Express.
   * Configuración de rutas y vinculación de endpoints con sus controladores.
-  * Implementación de middlewares de aplicación, validaciones defensivas y control de errores.
   * Configuración y estandarización del uso de rutas dinámicas (`/:id`).
   * Integración modular y resolución de consistencia entre los componentes del backend.
 
