@@ -29,37 +29,9 @@
   },
   {
     "id": 5,
-    "nombre": "Martina",
-    "apellido": "Bistagnino",
-    "telefono": "01126884621",
-    "email": "mbistagnino@dmetrop.com.ar"
-  },
-  {
-    "id": 6,
-    "nombre": "Martina",
-    "apellido": "Bistagnino",
-    "telefono": "01126884621",
-    "email": "mbistagnino@dmetrop.com.ar"
-  },
-  {
-    "id": 7,
-    "nombre": "Martina",
-    "apellido": "Bistagnino",
-    "telefono": "asdfghjk",
-    "email": "mbistagnino-@dmetrop.com.ar"
-  },
-  {
-    "id": 8,
-    "nombre": "Oscar Buenaventura",
-    "apellido": "Buenventura",
-    "telefono": "1150345678",
-    "email": "oscar111@gmail.com"
-  },
-  {
-    "id": 9,
-    "nombre": "Francisco Luis",
-    "apellido": "Bronzi",
-    "telefono": "1150206789",
-    "email": "franciscobronzi@gmail.com"
+    "nombre": "juan",
+    "apellido": "perez",
+    "telefono": "45466666",
+    "email": "pepe@mail.com"
   }
 ]

@@ -1228,7 +1228,6 @@ form {
 .empty-state p {
   color: var(--gray);
 }
-<<<<<<< Updated upstream
 .acciones-detalle {
     display: flex;
     align-items: center;
@@ -1258,7 +1257,7 @@ form {
     border-radius: 16px;
     padding: 28px;
     max-width: 650px;
-=======
+}
 
 /* =========================================================
    VISTA 404 - NOT FOUND
@@ -1274,7 +1273,7 @@ form {
 }
 
 .not-found-card {
-  width: min(754px, 95%);
+  width: min(1024px, 95%);
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1306,5 +1305,4 @@ form {
   padding: 12px 32px;
   font-size: 0.95rem;
   letter-spacing: 0.03em;
->>>>>>> Stashed changes
 }

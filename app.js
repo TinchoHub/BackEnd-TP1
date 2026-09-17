@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const logger = require("./middlewares/logger");
 
 const app = express();
 const PORT = 3000;
@@ -12,8 +11,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(logger);
 
 // ==========================================
 // Módulo de Clientes - Implementado por Dalila
@@ -37,11 +34,6 @@ app.use('/api/turnos', turnosRutas);
 const vistasRutas = require("./routes/vistas");
 app.use("/", vistasRutas);
 
-const notFoundMiddleware = require("./middlewares/notFoundMiddleware");
-app.use(notFoundMiddleware);
-
-const errorHandler = require('./middlewares/errorHandler');
-app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`Servidor en http://localhost:${PORT}`);
