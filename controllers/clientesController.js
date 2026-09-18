@@ -61,6 +61,13 @@ const consultarClientePorId = (req, res) => {
 
     const id = parseInt(req.params.id);
 
+    if (isNaN(id)) {
+        return res.status(400).json({
+            error: "Dato incorrecto",
+            mensaje: "El ID del cliente debe ser un número entero válido"
+        });
+    }
+
     const cliente = clientes.find(
         cliente => cliente.id === id
     );
@@ -199,6 +206,13 @@ const modificarClientePorId = (req, res) => {
 
     const id = parseInt(req.params.id);
 
+    if (isNaN(id)) {
+        return res.status(400).json({
+            error: "Dato incorrecto",
+            mensaje: "El ID proporcionado debe ser un número entero válido"
+        });
+    }
+
     const clienteIndex = clientes.findIndex(
         cliente => cliente.id === id
     );
@@ -331,6 +345,13 @@ const eliminarClientePorId = (req, res) => {
     const vehiculos = leerVehiculos();
 
     const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({
+            error: "Dato incorrecto",
+            mensaje: "El ID del cliente debe ser un número entero válido"
+        });
+    }
 
     const clienteIndex = clientes.findIndex(
         cliente => cliente.id === id

@@ -55,6 +55,13 @@ const consultarTurnoPorId = (req, res) => {
 
     const id = parseInt(req.params.id);
 
+    if (isNaN(id)) {
+        return res.status(400).json({
+            error: "Dato incorrecto",
+            mensaje: "El ID del turno debe ser un número entero válido"
+        });
+    }
+
     const turno = turnos.find(
         turno => turno.id === id
     );
@@ -197,6 +204,13 @@ const actualizarTurno = (req, res) => {
 
     const id = parseInt(req.params.id);
 
+    if (isNaN(id)) {
+        return res.status(400).json({
+            error: "Dato incorrecto",
+            mensaje: "El ID del turno debe ser un número entero válido"
+        });
+    }
+
     const turnoIndex = turnos.findIndex(
         turno => turno.id === id
     );
@@ -314,6 +328,13 @@ const cancelarTurnoPorId = (req, res) => {
     const turnos = leerTurnos();
 
     const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({
+            error: "Dato incorrecto",
+            mensaje: "El ID del turno debe ser un número entero válido"
+        });
+    }
 
     const turnoIndex = turnos.findIndex(
         turno => turno.id === id
