@@ -47,12 +47,5 @@
     "marca": "HONDA",
     "modelo": "Civic 2.0",
     "clienteId": 9
-  },
-  {
-    "id": 8,
-    "patente": "TT123CD",
-    "marca": "Ford",
-    "modelo": "Fiesta",
-    "clienteId": 1
   }
 ]
