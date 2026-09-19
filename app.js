@@ -34,6 +34,16 @@ app.use('/api/turnos', turnosRutas);
 const vistasRutas = require("./routes/vistas");
 app.use("/", vistasRutas);
 
+// ==========================================
+// RUTA NO ENCONTRADA (404)
+// ==========================================
+app.use((req, res) => {
+    res.status(404).render("404", { 
+        titulo: "Página no encontrada",
+        mensaje: "El recurso solicitado no existe" 
+    });
+});
+
 
 app.listen(PORT, () => {
     console.log(`Servidor en http://localhost:${PORT}`);
