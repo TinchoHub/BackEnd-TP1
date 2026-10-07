@@ -40,14 +40,6 @@
     "servicio": "Alineacion y Balanceo"
   },
   {
-    "id": 8,
-    "clienteId": 1,
-    "vehiculoId": 2,
-    "fecha": "2026-06-15",
-    "hora": "15:00",
-    "servicio": "Diagnóstico general"
-  },
-  {
     "id": 9,
     "clienteId": 1,
     "vehiculoId": 2,
